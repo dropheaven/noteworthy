@@ -1,0 +1,8 @@
+<ul>
+  <% @articles.each do |a| %>
+    <li>
+      <h1><%= link_to a.title, user_article_path(a.user, a) %></h1>
+      <p>Created By: <%= a.user.username %></p>
+    </li>
+  <% end %>
+</ul>
