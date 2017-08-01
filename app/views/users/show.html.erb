@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+
+<div class="user-articles">
+  <% @user.articles.each do |a| %>
+    <h2>
+      <%= link_to a.title, user_article_path(@user, a) %>
+    </h2>
+  <% end %>
+</div>
