@@ -1,8 +1,10 @@
-<ul>
-  <% @articles.each do |a| %>
-    <li>
-      <h1><%= link_to a.title, user_article_path(a.user, a) %></h1>
-      <p>Created By: <%= a.user.username %></p>
-    </li>
-  <% end %>
-</ul>
+<% @articles.each do |a| %>
+
+  <div class="article row clearfix">
+    <h2>
+      <%= link_to a.title, user_article_path(a.user, a) %> (<%= a.comments.count %> comments)<br />
+      <small class="author">Thread by <%= link_to a.user.username, a.user %></small>
+    </h2>
+  </div>
+
+<% end %>

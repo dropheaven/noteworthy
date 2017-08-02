@@ -10,24 +10,30 @@
 
   <body>
 
-    <div class="authentication-errors">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger" role="alert"><%= alert %></div>
+    <% end %>
 
-    <div class="navbar">
+    <nav>
       <ul>
-      <li><%= link_to "Home", root_path %></li>
+      <span><%= link_to "Home", root_path %></span>
         <% if user_signed_in? %>
-          <li><%= link_to "New Article", new_user_article_path(current_user) %></li>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <span><%= link_to "New Article", new_user_article_path(current_user) %></span>
+          <span><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></span>
         <% else %>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <span><%= link_to "Sign In", new_user_session_path %></span>
+          <span><%= link_to "Sign Up", new_user_registration_path %></span>
         <% end %>
       </ul>
+    </nav>
+
+    <div class="container">
+
+      <%= yield %>
+
     </div>
 
-    <%= yield %>
   </body>
 </html>
