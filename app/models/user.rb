@@ -7,6 +7,16 @@ class User < ApplicationRecord
   has_many :articles
   has_many :comments
 
+  before_save { email.downcase! }
+  before_save { username.downcase! }
+  validates :username, presence: true, length: { within: 2..20 },
+                       uniqueness: true
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 30 },
+                    format: {with: VALID_EMAIL_REGEX },
+                    uniqueness: true
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
