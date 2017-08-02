@@ -16,6 +16,7 @@
           <li><%= link_to "New Thread", new_user_article_path(current_user) %></li>
         <% else %>
           <li><%= link_to "Sign In", new_user_session_path %></li>
+          <li><%= link_to "Sign In with Github", user_github_omniauth_authorize_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
