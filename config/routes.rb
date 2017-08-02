@@ -7,5 +7,12 @@ Rails.application.routes.draw do
 
   resources :articles, only: :index
 
+
+  resources :comments, only: :create
+
+  resources :articles do
+    resources :comments
+  end
+
   root 'articles#index'
 end

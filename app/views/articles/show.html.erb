@@ -1,2 +1,21 @@
 <h1><a href="<%= @article.link %>"><%= @article.title %></a></h1>
 <p><%= link_to @article.user.username, @article.user %></p>
+
+<h3>Comments</h3>
+<ul>
+  <% @article.comments.each do |c| %>
+    <li>
+      <p><%= c.content %></p>
+      <p><%= c.user.username %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h5>New Comment</h5>
+
+<div class="comments">
+  <%= simple_form_for [@article, Comment.new] do |f| %>
+    <%= f.text_area :content %><br />
+    <%= f.submit "Add Comment" %>
+  <% end %>
+</div>
