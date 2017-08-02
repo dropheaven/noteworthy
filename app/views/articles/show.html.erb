@@ -3,6 +3,10 @@
 		<a href="<%= @article.link %>"><%= @article.title %></a><br />
 		<small class="author"> created by: <%= link_to @article.user.username, @article.user %>
 	</h2>
+
+	<% @article.categories.each do |category| %>
+		<span><%= category.name %></span>
+	<% end %>
 </div>
 
 <% @article.comments.each do |comment| %>
