@@ -8,7 +8,7 @@
 <% @article.comments.each do |comment| %>
 	<div class="comments_wrapper clearfix">
 		<div class="pull-left">
-			<p class="lead"><%= comment.content %></p>
+			<p class="lead"><strong><%= comment.user.username %>: </strong><%= comment.content %></p>
 		</div>
 	</div>
 <% end %>
