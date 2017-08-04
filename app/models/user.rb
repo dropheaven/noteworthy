@@ -26,4 +26,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+	
+	def self.search(username)
+		if username
+			username.downcase!
+			self.find_by(username: username)
+		end
+	end
 end

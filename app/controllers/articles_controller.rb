@@ -2,6 +2,13 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+		@user = User.search(params[:user])
+		if @user
+			redirect_to user_path(@user)
+		else
+			'Username does not exist'
+		end
+		
   end
 
   def show
@@ -28,7 +35,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :link, category_ids: [], categories_attributes: [:name])
+    params.require(:article).permit(:title, :link, :category_name, category_ids: [])
   end
 
 end
