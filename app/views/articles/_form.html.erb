@@ -26,10 +26,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.fields_for :categories, @article.categories.build do |category| %>
-      <%= f.label "New Category" %>
-      <%= category.text_field :name %>
-    <% end %>
+		<%= f.label "New Category" %>
+		<%= f.text_field :category_name %>
   </div>
 
   <div class="form-group">

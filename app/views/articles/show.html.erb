@@ -5,16 +5,22 @@
 	</h2>
 
 	<% @article.categories.each do |category| %>
-		<span><%= category.name %></span>
+		<a href="">
+			<span class="label label-default"><%= category.name %></span>
+		</a>
 	<% end %>
 </div>
 
 <% @article.comments.each do |comment| %>
-	<div class="comments_wrapper clearfix">
-		<div class="pull-left">
-			<p class="lead"><strong><%= comment.user.username %>: </strong><%= comment.content %></p>
-		</div>
-	</div>
+	<blockquote class="blockquote">
+		<hr>
+		<p>
+			<%= comment.content %>
+		</p>
+		<footer>
+			<cite title="<%= comment.user.username %>"><%= comment.user.username %></cite>
+		</footer>
+	</blockquote>
 <% end %>
 
 <div class="comments">
