@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -8,7 +9,6 @@ class ArticlesController < ApplicationController
 		else
 			'Username does not exist'
 		end
-		
   end
 
   def show
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 
   def new
     @user = current_user
-    @article = Article.new
+    @article = @user.articles.build
   end
 
   def create
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :link, :category_name, category_ids: [])
+    params.require(:article).permit(:title, :link, :category_name, category_ids:[])
   end
 
 end
